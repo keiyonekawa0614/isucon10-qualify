@@ -20,7 +20,7 @@ CREATE TABLE isuumo.estate
     popularity  INTEGER             NOT NULL,
     popularity_desc INTEGER AS (-popularity) NOT NULL,
 
-    -- INDEX idx_rent_id (rent, id),
+    INDEX estate_rent_id_idx (rent, id),
     INDEX estate_popularity_id_idx (popularity_desc, id)
     -- INDEX idx_latitude (latitude),
     -- INDEX idx_longitude (longitude),
@@ -44,8 +44,9 @@ CREATE TABLE isuumo.chair
     popularity  INTEGER         NOT NULL,
     stock       INTEGER         NOT NULL,
     popularity_desc INTEGER AS (-popularity) NOT NULL,
-    -- INDEX idx_stock_price_id (stock, price, id),
-    INDEX idx_stock_popularity_id (stock, popularity_desc, id)
+    
+    INDEX chair_stock_price_id_idx (stock, price, id),
+    INDEX chair_stock_popularity_id_idx (stock, popularity_desc, id)
     -- INDEX idx_kind (kind),
     -- INDEX idx_color (color),
     -- INDEX idx_height (height),
