@@ -26,6 +26,7 @@ const dbinfo = {
   password: process.env.MYSQL_PASS ?? "isucon",
   database: process.env.MYSQL_DBNAME ?? "isuumo",
   connectionLimit: 10,
+  charset: "utf8mb4",
 };
 
 const app = express();
@@ -45,7 +46,7 @@ app.post("/initialize", async (req, res, next) => {
     const execfiles = dbfiles.map((file) => path.join(dbdir, file));
     for (const execfile of execfiles) {
       await exec(
-        `mysql -h ${dbinfo.host} -u ${dbinfo.user} -p${dbinfo.password} -P ${dbinfo.port} ${dbinfo.database} < ${execfile}`
+        `mysql --default-character-set=utf8mb4 -h ${dbinfo.host} -u ${dbinfo.user} -p${dbinfo.password} -P ${dbinfo.port} ${dbinfo.database} < ${execfile}`
       );
     }
     res.json({
