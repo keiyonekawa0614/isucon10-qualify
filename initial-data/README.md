@@ -9,7 +9,9 @@ pip3 install -r requirements.txt
 ```
 
 ```sh
-go get github.com/orisano/wayt
+go install github.com/orisano/wayt@latest
+echo 'export PATH="$(go env GOPATH)/bin:$PATH"' >> ~/.zshrc
+exec $SHELL -l
 ```
 
 
